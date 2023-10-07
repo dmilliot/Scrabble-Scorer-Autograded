@@ -33,25 +33,91 @@ function oldScrabbleScorer(word) {
 // don't change the names or your program won't work as expected. //
 
 function initialPrompt() {
-   console.log("Let's play some scrabble! Enter a word:");
+   word = input.question("Let's play some scrabble! Enter a word:");
+   // points = oldScrabbleScorer(word);
+   // console.log(points);
+   return word;
 };
 
-let simpleScorer;
+// let simpleScorer;
+function simpleScorer(word) {
+   word = word.toUpperCase();
+   let score = 0;
+   for (i=0; i<word.length; i++) {
+      score += 1;
+   }
+   return score;
+}
 
-let vowelBonusScorer;
+// let vowelBonusScorer;
+function vowelBonusScorer(word) {
+   word = word.toUpperCase();
+   let vowels = ['A', 'E', 'I', 'O', 'U', 'Y']
+   let score = 0;
+   for (i=0; i<word.length; i++) {
+      if(vowels.includes(word[i])) {
+         score +=3;
+      } else {
+         score +=1;
+      }
+   }
+   return score
+}
 
-let scrabbleScorer;
+let scoringAlgorithm1 = {
+   name: 'Simple Score',
+   description: '1 point per letter.',
+   function: simpleScorer
+}
+let scoringAlgorithm2 = {
+   name: 'Bonus Vowels',
+   description: '3 points for vowels, 1 point for all else.',
+   function: vowelBonusScorer
+}
+let scoringAlgorithm3 = {
+   name: 'Scrabble',
+   description: 'Traditional scoring algorithm',
+   function: scrabbleScorer
+}
 
-const scoringAlgorithms = [];
+// let scrabbleScorer;
+function scrabbleScorer(word) {
+   score = 0;
+   word = word.toLowerCase();
+   for (i=0; i<word.length; i++) {
+      let points = newPointStructure[word[i]];
+      score += points;
+      }
+   return score;
+}
 
-function scorerPrompt() {}
+const scoringAlgorithms = [scoringAlgorithm1, scoringAlgorithm2, scoringAlgorithm3];
 
-function transform() {};
+function scorerPrompt() {
+   scorerToUse = input.question(`\n Which scorer would you like to use?\n
+   Enter 0 for simple scorer.\n
+   Enter 1 for vowel bonus scoring.\n
+   enter 2 for scrabble scoring.`);
+   return scoringAlgorithms[scorerToUse];
+}
+// take bits from oldscorer and put into new object with LOWERCASE and as parameters: value.
+function transform(obj) {
+   newScrabbleScorer = {};
+   for(pointValue in obj) {
+      for(const letter of obj[pointValue]) {
+         newScrabbleScorer[letter.toLowerCase()] = Number(pointValue);
+      }
+   }
+   return newScrabbleScorer;
+};
 
-let newPointStructure;
+let newPointStructure = transform(oldPointStructure);
 
 function runProgram() {
-   initialPrompt();
+   word = initialPrompt();
+   scorerToUse = scorerPrompt();
+   score = scorerToUse.function(word);
+   console.log(`You got ${score} points.`);
    
 }
 
