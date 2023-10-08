@@ -116,7 +116,7 @@ let newPointStructure = transform(oldPointStructure);
 function runProgram() {
    word = initialPrompt();
    scorerToUse = scorerPrompt();
-   score = scorerToUse.function(word);
+   score = scorerToUse.scorerFunction(word);
    console.log(`You got ${score} points.`);
    
 }
