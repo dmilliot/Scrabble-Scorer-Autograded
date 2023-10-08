@@ -67,17 +67,17 @@ function vowelBonusScorer(word) {
 let scoringAlgorithm1 = {
    name: 'Simple Score',
    description: '1 point per letter.',
-   function: simpleScorer
+   scorerFunction: simpleScorer
 }
 let scoringAlgorithm2 = {
    name: 'Bonus Vowels',
    description: '3 points for vowels, 1 point for all else.',
-   function: vowelBonusScorer
+   scorerFunction: vowelBonusScorer
 }
 let scoringAlgorithm3 = {
    name: 'Scrabble',
    description: 'Traditional scoring algorithm',
-   function: scrabbleScorer
+   scorerFunction: scrabbleScorer
 }
 
 // let scrabbleScorer;
