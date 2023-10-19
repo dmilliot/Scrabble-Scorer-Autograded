@@ -64,21 +64,21 @@ function vowelBonusScorer(word) {
    return score
 }
 
-let scoringAlgorithm1 = {
-   name: 'Simple Score',
-   description: '1 point per letter.',
-   scorerFunction: simpleScorer
-}
-let scoringAlgorithm2 = {
-   name: 'Bonus Vowels',
-   description: '3 points for vowels, 1 point for all else.',
-   scorerFunction: vowelBonusScorer
-}
-let scoringAlgorithm3 = {
-   name: 'Scrabble',
-   description: 'Traditional scoring algorithm',
-   scorerFunction: scrabbleScorer
-}
+// let scoringAlgorithm1 = {
+//    name: 'Simple Score',
+//    description: '1 point per letter.',
+//    scorerFunction: simpleScorer
+// }
+// let scoringAlgorithm2 = {
+//    name: 'Bonus Vowels',
+//    description: '3 points for vowels, 1 point for all else.',
+//    scorerFunction: vowelBonusScorer
+// }
+// let scoringAlgorithm3 = {
+//    name: 'Scrabble',
+//    description: 'Traditional scoring algorithm',
+//    scorerFunction: scrabbleScorer
+// }
 
 // let scrabbleScorer;
 function scrabbleScorer(word) {
@@ -88,11 +88,14 @@ function scrabbleScorer(word) {
       let points = newPointStructure[word[i]];
       score += points;
       }
-   return score;
+   return score;[]
 }
 
-const scoringAlgorithms = [scoringAlgorithm1, scoringAlgorithm2, scoringAlgorithm3];
-
+// const scoringAlgorithms = [scoringAlgorithm1, scoringAlgorithm2, scoringAlgorithm3];
+const scoringAlgorithms = [{name: 'Simple Score', description: '1 point per letter.', scorerFunction: simpleScorer},
+{name: 'Bonus Vowels', description: '3 points for vowels, 1 point for all else.', scorerFunction: vowelBonusScorer},
+{name: 'Scrabble', description: 'Traditional scoring algorithm', scorerFunction: scrabbleScorer}
+]
 function scorerPrompt() {
    scorerToUse = input.question(`\n Which scorer would you like to use?\n
    Enter 0 for simple scorer.\n
