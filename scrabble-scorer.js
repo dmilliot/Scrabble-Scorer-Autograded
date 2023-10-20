@@ -98,9 +98,9 @@ const scoringAlgorithms = [{name: 'Simple Score', description: '1 point per lett
 ]
 function scorerPrompt() {
    scorerToUse = input.question(`\n Which scorer would you like to use?\n
-   Enter 0 for simple scorer.\n
-   Enter 1 for vowel bonus scoring.\n
-   enter 2 for scrabble scoring.`);
+   Enter 0 for ${scoringAlgorithms[0].name}.\n
+   Enter 1 for ${scoringAlgorithms[1].name}.\n
+   enter 2 for ${scoringAlgorithms[2].name}.`);
    return scoringAlgorithms[scorerToUse];
 }
 // take bits from oldscorer and put into new object with LOWERCASE and as parameters: value.
